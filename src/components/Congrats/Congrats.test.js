@@ -27,7 +27,7 @@ describe('<Congrats />', () => {
 
   it('should renders non-empty congrats message when `success` prop is true', () => {
     const wrapper = renderComponent({ success: true });
-    const message = findByTestAttr(wrapper, 'component-message');
+    const message = findByTestAttr(wrapper, 'congrats-message');
     expect(message.text().length).not.toBe(0);
   });
 });
