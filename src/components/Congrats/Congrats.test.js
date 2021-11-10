@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import { findByTestAttr } from '../../utils/testUtils';
+import { findByTestAttr, checkProps } from '../../utils/testUtils';
 import Congrats from './Congrats';
 
 /**
@@ -29,5 +29,10 @@ describe('<Congrats />', () => {
     const wrapper = renderComponent({ success: true });
     const message = findByTestAttr(wrapper, 'congrats-message');
     expect(message.text().length).not.toBe(0);
+  });
+
+  it('should not throw warning with expected props', () => {
+    const expectedProps = { success: false };
+    checkProps(Congrats, expectedProps);
   });
 });
