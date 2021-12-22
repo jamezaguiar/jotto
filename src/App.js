@@ -5,8 +5,8 @@ import GuessedWords from './components/GuessedWords/GuessedWords';
 
 function App() {
   return (
-    <div className="container">
-      <h1>Jotto</h1>
+    <div className="container" data-test="component-app">
+      <h1 data-test="page-title">Jotto</h1>
       <Congrats success />
       <GuessedWords
         guessedWords={[{ guessedWord: 'train', letterMatchCount: 3 }]}
