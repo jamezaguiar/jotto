@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import './App.css';
-
 import Congrats from './components/Congrats/Congrats';
-import Input from './components/Input/Input';
 import GuessedWords from './components/GuessedWords/GuessedWords';
-
-import { getSecretWord } from './actions';
+import Input from './components/Input/Input';
+import { getSecretWord } from './redux/actions';
 
 function App() {
   // TODO: get props from shared state

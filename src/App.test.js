@@ -1,10 +1,10 @@
 /* eslint-disable import/first */
-jest.mock('./actions');
+jest.mock('./redux/actions');
 
 import { mount } from 'enzyme';
-import { findByTestAttr } from './utils/testUtils';
 import App from './App';
-import { getSecretWord as mockGetSecretWord } from './actions';
+import { getSecretWord as mockGetSecretWord } from './redux/actions';
+import { findByTestAttr } from './utils/testUtils';
 
 const defaultProps = {};
 

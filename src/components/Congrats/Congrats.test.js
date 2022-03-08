@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import { findByTestAttr, checkProps } from '../../utils/testUtils';
+import { checkProps, findByTestAttr } from '../../utils/testUtils';
 import Congrats from './Congrats';
 
 /**
