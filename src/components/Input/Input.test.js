@@ -1,5 +1,10 @@
-import { shallow } from 'enzyme';
-import { checkProps, findByTestAttr } from '../../utils/testUtils';
+import { mount, ReactWrapper } from 'enzyme';
+import { Provider } from 'react-redux';
+import {
+  checkProps,
+  findByTestAttr,
+  storeFactory,
+} from '../../utils/testUtils';
 import Input from './Input';
 
 const mockSetState = jest.fn();
@@ -8,17 +13,24 @@ jest.mock('react', () => ({
   useState: initialState => [initialState, mockSetState],
 }));
 
-const defaultProps = { secretWord: 'train', success: false };
+const defaultProps = { secretWord: 'train' };
 
 /**
  * Factory function to create a ShallowWrapper for the Input component.
  * @function renderComponent
  * @param {object} props - Component props specific to this setup
- * @returns {ShallowWrapper}
+ * @returns {ReactWrapper}
  */
-const renderComponent = (props = {}) => {
+const renderComponent = (initialState = { success: false }, props = {}) => {
   const setupProps = { ...defaultProps, ...props };
-  return shallow(<Input {...setupProps} />);
+
+  const store = storeFactory(initialState);
+
+  return mount(
+    <Provider store={store}>
+      <Input {...setupProps} />
+    </Provider>
+  );
 };
 
 it('should not throw warning with expected props', () => {

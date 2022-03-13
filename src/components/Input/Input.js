@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
-import { bool, string } from 'prop-types';
+import { string } from 'prop-types';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-const Input = ({ secretWord, success }) => {
+const Input = ({ secretWord }) => {
+  const success = useSelector(state => state.success);
+
   const [currentGuess, setCurrentGuess] = useState('');
 
   const handleSubmit = event => {
@@ -39,7 +42,6 @@ const Input = ({ secretWord, success }) => {
 
 Input.propTypes = {
   secretWord: string.isRequired,
-  success: bool.isRequired,
 };
 
 export default Input;

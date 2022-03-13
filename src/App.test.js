@@ -2,17 +2,23 @@
 jest.mock('./redux/actions');
 
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import App from './App';
 import { getSecretWord as mockGetSecretWord } from './redux/actions';
-import { findByTestAttr } from './utils/testUtils';
+import { findByTestAttr, storeFactory } from './utils/testUtils';
 
 const defaultProps = {};
 
-const renderComponent = (props = {}) => {
+const renderComponent = (initialState = {}, props = {}) => {
   // using mount, because useEffect aren't called on `shallow`
   // https://github.com/enzymejs/enzyme/issues/2086
+  const store = storeFactory(initialState);
   const setupProps = { ...defaultProps, ...props };
-  return mount(<App {...setupProps} />);
+  return mount(
+    <Provider store={store}>
+      <App {...setupProps} />
+    </Provider>
+  );
 };
 
 it('should renders without error', () => {
@@ -33,7 +39,7 @@ describe('get secret word', () => {
   });
 
   it('should get secret word on app mount', () => {
-    const wrapper = renderComponent();
+    renderComponent();
 
     expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
   });
